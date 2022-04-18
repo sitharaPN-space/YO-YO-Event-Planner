@@ -1,4 +1,4 @@
-import React from "react";
+import React,  { useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxOpen, faCartArrowDown, faChartPie, faChevronDown, faClipboard, faCommentDots, faFileAlt, faPlus, faRocket, faStore } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Button, Dropdown } from '@themesberg/react-bootstrap';
@@ -9,10 +9,18 @@ import Profile3 from "../assets/img/team/profile-picture-3.jpg";
 
 
 export default () => {
+
+  const [selectedFile, setSelectedFile] = useState({Profile3});
+ 
+
+  const uploadImageHandler = (file) => {
+      setSelectedFile(file);
+  };
+
   return (
     <>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-        <Dropdown>
+        {/* <Dropdown>
           <Dropdown.Toggle as={Button} variant="secondary" className="text-dark me-2">
             <FontAwesomeIcon icon={faPlus} className="me-2" />
             <span>New</span>
@@ -34,9 +42,9 @@ export default () => {
               <FontAwesomeIcon icon={faRocket} className="text-danger me-2" /> Subscription Plan
               </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown>
+        </Dropdown> */}
 
-        <div className="d-flex">
+        {/* <div className="d-flex">
           <Dropdown>
             <Dropdown.Toggle as={Button} variant="primary">
               <FontAwesomeIcon icon={faClipboard} className="me-2" /> Reports
@@ -63,12 +71,12 @@ export default () => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-        </div>
+        </div> */}
       </div>
 
       <Row>
         <Col xs={12} xl={8}>
-          <GeneralInfoForm />
+          <GeneralInfoForm selectedFile={selectedFile}/>
         </Col>
 
         <Col xs={12} xl={4}>
@@ -78,13 +86,15 @@ export default () => {
             </Col>
             <Col xs={12}>
               <ChoosePhotoWidget
+                uploadImageHandler={uploadImageHandler}
                 title="Event Logo"
-                photo={Profile3}
+                photo={selectedFile}
               />
             </Col>
           </Row>
         </Col>
       </Row>
+     
     </>
   );
 };

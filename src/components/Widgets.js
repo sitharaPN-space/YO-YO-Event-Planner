@@ -1,12 +1,12 @@
 
-import React from "react";
+import React, { useState }  from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp, faChartArea, faChartBar, faChartLine, faFlagUsa, faFolderOpen, faGlobeEurope, faPaperclip, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp, faChartArea, faChartBar, faChartLine, faFlagUsa, faFolderOpen, faGlobeEurope, faPaperclip, faUserPlus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faAngular, faBootstrap, faReact, faVuejs } from "@fortawesome/free-brands-svg-icons";
-import { Col, Row, Card, Image, Button, ListGroup, ProgressBar } from '@themesberg/react-bootstrap';
+import { Col, Row, Card, Image, Button, ListGroup, ProgressBar, Modal } from '@themesberg/react-bootstrap';
 import { CircleChart, BarChart, SalesValueChart, SalesValueChartphone } from "./Charts";
 
-import Profile1 from "../assets/img/team/profile-picture-1.jpg";
+import Profile1 from "../assets/img/team/event2.jfif";
 import ProfileCover from "../assets/img/profile-cover.jpg";
 
 import teamMembers from "../data/teamMembers";
@@ -32,7 +32,7 @@ export const ProfileCardWidget = () => {
 };
 
 export const ChoosePhotoWidget = (props) => {
-  const { title, photo } = props;
+  const { title, photo, uploadImageHandler } = props;
 
   return (
     <Card border="light" className="bg-white shadow-sm mb-4">
@@ -40,7 +40,7 @@ export const ChoosePhotoWidget = (props) => {
         <h5 className="mb-4">{title}</h5>
         <div className="d-xl-flex align-items-center">
           <div className="user-avatar xl-avatar">
-            <Image fluid rounded src={photo} />
+            <Image fluid rounded src="../" />
           </div>
           <div className="file-field">
             <div className="d-flex justify-content-xl-center ms-xl-3">
@@ -48,7 +48,9 @@ export const ChoosePhotoWidget = (props) => {
                 <span className="icon icon-md">
                   <FontAwesomeIcon icon={faPaperclip} className="me-3" />
                 </span>
-                <input type="file" />
+                <input type="file" 
+                  onChange={(e) => uploadImageHandler(e.target.files[0])}
+                />
                 <div className="d-md-block text-start">
                   <div className="fw-normal text-dark mb-1">Choose Image</div>
                   <div className="text-gray small">JPG, GIF or PNG. Max size of 800K</div>
@@ -72,9 +74,12 @@ export const CounterWidget = (props) => {
       <Card.Body>
         <Row className="d-block d-xl-flex align-items-center">
           <Col xl={5} className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
-            <div className={`icon icon-shape icon-md icon-${iconColor} rounded me-4 me-sm-0`}>
-              <FontAwesomeIcon icon={icon} />
-            </div>
+            
+             
+              <div className=" xl-avatar">
+                   <Image fluid rounded src={Profile1} />
+              </div>
+        
             <div className="d-sm-none">
               <h5>{category}</h5>
               <h3 className="mb-1">{title}</h3>
@@ -200,17 +205,20 @@ export const TeamMembersWidget = () => {
   };
 
   return (
+    <div>
     <Card border="light" className="shadow-sm">
       <Card.Header className="border-bottom border-light d-flex justify-content-between">
         <h5 className="mb-0">Team members</h5>
-        <Button variant="secondary" size="sm">See all</Button>
+        {/* <Button variant="secondary" size="sm"><FontAwesomeIcon icon={faUserPlus} className="me-2" onClick={() => this.setShowDefault(true)}/>New</Button> */}
       </Card.Header>
       <Card.Body>
         <ListGroup className="list-group-flush list my--3">
           {teamMembers.map(tm => <TeamMember key={`team-member-${tm.id}`} {...tm} />)}
         </ListGroup>
       </Card.Body>
+
     </Card>
+    </div>
   );
 };
 

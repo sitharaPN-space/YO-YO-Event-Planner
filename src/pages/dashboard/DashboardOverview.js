@@ -62,7 +62,7 @@ export default () => {
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="Customers"
-            title="345k"
+            title="Rock Star Musical"
             period="Feb 1 - Apr 1"
             percentage={18.2}
             icon={faChartLine}
@@ -73,7 +73,7 @@ export default () => {
         <Col xs={12} sm={6} xl={4} className="mb-4">
           <CounterWidget
             category="Revenue"
-            title="$43,594"
+            title="Birthday Event"
             period="Feb 1 - Apr 1"
             percentage={28.4}
             icon={faCashRegister}
@@ -82,10 +82,21 @@ export default () => {
         </Col>
 
         <Col xs={12} sm={6} xl={4} className="mb-4">
+          <CounterWidget
+            category="Revenue"
+            title="Birthday Event"
+            period="Feb 1 - Apr 1"
+            percentage={28.4}
+            icon={faCashRegister}
+            iconColor="shape-tertiary"
+          />
+        </Col>
+
+        {/* <Col xs={12} sm={6} xl={4} className="mb-4">
           <CircleChartWidget
             title="Traffic Share"
             data={trafficShares} />
-        </Col>
+        </Col> */}
       </Row>
 
       <Row>

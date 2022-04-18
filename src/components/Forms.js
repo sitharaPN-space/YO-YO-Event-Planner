@@ -4,28 +4,49 @@ import moment from "moment-timezone";
 import Datetime from "react-datetime";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Card, Form, Button, InputGroup } from '@themesberg/react-bootstrap';
+import { Col, Row, Card, Form, Button, InputGroup  } from '@themesberg/react-bootstrap';
+import { TeamMembersWidget } from "../components/Widgets";
 
 
-export const GeneralInfoForm = () => {
-  const [birthday, setBirthday] = useState("");
+export const GeneralInfoForm = (props) => {
+  const [eventDate, setEventDate] = useState(new Date());
+  const [inputs, setInputs] = useState({});
+  const [members, setMembers] = useState([]);
+ 
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({ ...values, [name]: value }))
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(eventDate);
+    console.log(props.selectedFile);
+   // setInputs(values => ({ ...values, file: props.selectedFile }));
+    setInputs(values => ({ ...values, eventDate: eventDate }));
+    console.log(inputs);
+    
+    
+  }
 
   return (
     <Card border="light" className="bg-white shadow-sm mb-4">
       <Card.Body>
         <h5 className="mb-4">General information</h5>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Row>
             <Col md={6} className="mb-3">
               <Form.Group id="EventName">
                 <Form.Label>Event Name</Form.Label>
-                <Form.Control required type="text" placeholder="Name your Event" />
+                <Form.Control required type="text"  name="eventname" onChange={handleChange} placeholder="Name your Event" />
               </Form.Group>
             </Col>
             <Col md={6} className="mb-3">
               <Form.Group id="EventDisplyaName">
                 <Form.Label>Event Display Name</Form.Label>
-                <Form.Control required type="text" placeholder="Event Display Name" />
+                <Form.Control required type="text" name="eventDisplayName" onChange={handleChange} placeholder="Event Display Name" />
               </Form.Group>
             </Col>
           </Row>
@@ -35,28 +56,36 @@ export const GeneralInfoForm = () => {
                 <Form.Label>Event Date</Form.Label>
                 <Datetime
                   timeFormat={false}
-                  onChange={setBirthday}
-                  renderInput={(props, openCalendar) => (
-                    <InputGroup>
-                      <InputGroup.Text><FontAwesomeIcon icon={faCalendarAlt} /></InputGroup.Text>
-                      <Form.Control
-                        required
-                        type="text"
-                        value={birthday ? moment(birthday).format("MM/DD/YYYY") : ""}
-                        placeholder="mm/dd/yyyy"
-                        onFocus={openCalendar}
-                        onChange={() => { }} />
-                    </InputGroup>
-                  )} />
+                  name="eventDate"
+                  onChange={handleChange}
+                  Datetime="DD/MM/YYYY"
+                 // value={eventDate}
+                  // renderInput={(props, openCalendar) => (
+                  //   <InputGroup>
+                  //     <InputGroup.Text><FontAwesomeIcon icon={faCalendarAlt} /></InputGroup.Text>
+                  //     <Form.Control
+                  //       required
+                  //       type="text"
+                  //       value={eventDate ? moment(eventDate).format("MM/DD/YYYY") : ""}
+                  //       placeholder="mm/dd/yyyy"
+                  //       onFocus={openCalendar}
+                  //       onChange={setEventDate} />
+                  //   </InputGroup>
+                  // )} 
+                  />
               </Form.Group>
             </Col>
             <Col md={6} className="mb-3">
               <Form.Group id="gender">
-                <Form.Label>Gender</Form.Label>
-                <Form.Select defaultValue="0">
-                  <option value="0">Gender</option>
-                  <option value="1">Female</option>
-                  <option value="2">Male</option>
+                <Form.Label>Event Type</Form.Label>
+                <Form.Select defaultValue="0" name="eventType" onChange={handleChange}>
+                  <option value="0">Conference</option>
+                  <option value="1">Wedding</option>
+                  <option value="2">Exehibition</option>
+                  <option value="3">Competition</option>
+                  <option value="4">Cultural Shows</option>
+                  <option value="5">Musical</option>
+                  <option value="5">Online</option>
                 </Form.Select>
               </Form.Group>
             </Col>
@@ -65,33 +94,44 @@ export const GeneralInfoForm = () => {
             <Col md={6} className="mb-3">
               <Form.Group id="description">
                 <Form.Label>Description</Form.Label>
-                <textarea class="form-control" placeholder="Leave a comment here" id="description"></textarea>
+                <textarea name="description" onChange={handleChange} class="form-control" placeholder="Leave a comment here" id="description"></textarea>
               </Form.Group>
             </Col>
             <Col md={6} className="mb-3">
               <Form.Group id="phone">
-                <Form.Label>Phone</Form.Label>
-                <Form.Control required type="number" placeholder="+12-345 678 910" />
+                <Form.Label>No of Participents</Form.Label>
+                <Form.Control required type="number" name="participents" onChange={handleChange}/>
               </Form.Group>
             </Col>
           </Row>
 
-          <h5 className="my-4">Address</h5>
           <Row>
             <Col sm={9} className="mb-3">
               <Form.Group id="address">
                 <Form.Label>Address</Form.Label>
-                <Form.Control required type="text" placeholder="Enter your home address" />
+                <Form.Control required type="text" placeholder="Enter the event address" name="address" onChange={handleChange}/>
               </Form.Group>
             </Col>
-            <Col sm={3} className="mb-3">
+            {/* <Col sm={3} className="mb-3">
               <Form.Group id="addressNumber">
                 <Form.Label>Number</Form.Label>
-                <Form.Control required type="number" placeholder="No." />
+                <Form. required type="number" placeholder="No." />
+              </Form.Group>
+            </Col> */}
+          </Row>
+          {/* <Row>
+            <Col>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Upload Event Logo </Form.Label>
+                <Form.Control type="file" 
+                  onChange={(e) => }
+                />
               </Form.Group>
             </Col>
-          </Row>
-          <Row>
+          </Row> */}
+
+         
+          {/* <Row>
             <Col sm={4} className="mb-3">
               <Form.Group id="city">
                 <Form.Label>City</Form.Label>
@@ -163,8 +203,12 @@ export const GeneralInfoForm = () => {
                 <Form.Control required type="tel" placeholder="ZIP" />
               </Form.Group>
             </Col>
-          </Row>
+          </Row> */}
           <div className="mt-3">
             <Button variant="primary" type="submit">Save All</Button>
           </div>
-        </Form
+        </Form>
+      </Card.Body>
+    </Card>
+  );
+};

@@ -103,7 +103,7 @@ export default (props = {}) => {
               {/* <NavItem external title="Messages" link="https://demo.themesberg.com/volt-pro-react/#/messages" target="_blank" badgeText="Pro" icon={faInbox} /> */}
               <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
               <NavItem title="Event" icon={faFlag} link={Routes.Settings.path} />
-              <NavItem title="Services" icon={faTruck} link={""} />
+              <NavItem title="Services" icon={faTruck} link={Routes.Services.path} />
               <NavItem title="Budget Planner" icon={faCoins} link={""} />
               <NavItem title="Agenda" icon={faFileAlt} link={""} />
               <NavItem title="Marketing" icon={faBullhorn} link={""} />
@@ -158,7 +158,7 @@ export default (props = {}) => {
                 <NavItem title="Toasts" link={Routes.Toasts.path} />
                 <NavItem title="Tooltips" link={Routes.Tooltips.path} />
               </CollapsableNavItem>
-              <NavItem external title="Themesberg" link="https://themesberg.com" target="_blank" image={ThemesbergLogo} />
+              {/* <NavItem external title="Themesberg" link="https://themesberg.com" target="_blank" image={ThemesbergLogo} /> */}
               <Button as={Link} to={Routes.Upgrade.path} variant="secondary" className="upgrade-to-pro"><FontAwesomeIcon icon={faRocket} className="me-1" /> Upgrade to Pro</Button>
             </Nav>
           </div>
