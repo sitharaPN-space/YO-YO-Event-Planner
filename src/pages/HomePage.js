@@ -147,6 +147,6 @@ export default () => (
     <RouteWithSidebar exact path={Routes.DocsBuild.path} component={DocsBuild} />
     <RouteWithSidebar exact path={Routes.DocsChangelog.path} component={DocsChangelog} />
 
-    <Redirect to={Routes.NotFound.path} />
+    <Redirect  to={Routes.NotFound.path} />
   </Switch>
 );

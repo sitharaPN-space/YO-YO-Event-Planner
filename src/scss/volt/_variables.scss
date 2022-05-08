@@ -69,10 +69,10 @@ $colors: (
 
 // Color scheme
 $default:       #262B40;
-$primary:       #262B40;
-$secondary:     #61DAFB;
-$tertiary:      #1B998B;
-$quaternary:    #C96480;
+$primary:      #333C83; // #262B40;
+$secondary:    #61DAFB;
+$tertiary:      #FDAF75; //#1B998B;
+$quaternary:   #EAEA7F;// #C96480;
 
 // Series names and colors. This can be extended or customized as desired. Just add more series and colors.
 $ct-series-names: (a, b, c, d, e, f, g) !default;

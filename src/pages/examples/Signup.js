@@ -1,5 +1,6 @@
 
-import React from "react";
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -11,6 +12,35 @@ import BgImage from "../../assets/img/illustrations/signin.svg";
 
 
 export default () => {
+
+  const [user, setUser] = useState({
+    firstName: '',
+    password: '',
+    email: '',
+  });
+
+  // const navigate = useNavigate();
+
+  // const handleOnSubmit = event => {
+  //   /* Tests throw console Error if preventDefault is called */
+  //   event.preventDefault();
+  //   navigate('/success', {
+  //       state: {
+  //           firstName: user.firstName,
+  //           email: user.email
+  //       }
+  //   });
+
+  // };
+
+  const handleChange = event => {
+    setUser({
+        ...user,
+        [event.target.name]: event.target.value,
+    });
+  };
+
+
   return (
     <main>
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
@@ -33,7 +63,7 @@ export default () => {
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faEnvelope} />
                       </InputGroup.Text>
-                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
+                      <Form.Control autoFocus required type="email" placeholder="example@company.com" id="email" name="email" value={user.email} onChange={handleChange}/>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="password" className="mb-4">
@@ -42,7 +72,7 @@ export default () => {
                       <InputGroup.Text>
                         <FontAwesomeIcon icon={faUnlockAlt} />
                       </InputGroup.Text>
-                      <Form.Control required type="password" placeholder="Password" />
+                      <Form.Control required type="password" placeholder="Password" id="password" name="password" value={user.password} onChange={handleChange} />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="confirmPassword" className="mb-4">
